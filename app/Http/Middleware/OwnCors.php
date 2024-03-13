@@ -15,11 +15,11 @@ class OwnCors
      */
     public function handle($request, Closure $next)
     {
-        header("Access-Control-Allow-Origin: http://localhost");
+        header("Access-Control-Allow-Origin: http://127.0.0.1");
 
         $headers = [
             'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-Token , X-XSRF-TOKEN',
+            'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization, X-CSRF-TOKEN , X-XSRF-TOKEN',
             'Access-Control-Allow-Credentials' => 'true'
         ];
         if ($request->getMethod() == "OPTIONS") {
@@ -29,7 +29,7 @@ class OwnCors
 
         $response = $next($request);
         
-        $response->headers->set('Set-Cookie', str_replace(';','; SameSite=None; Secure;',$response->headers->get('Set-Cookie')));
+        // $response->headers->set('Set-Cookie', str_replace(';','; SameSite=None; Secure;',$response->headers->get('Set-Cookie')));
         foreach ($headers as $key => $value)
             $response->header($key, $value);
         return $response;

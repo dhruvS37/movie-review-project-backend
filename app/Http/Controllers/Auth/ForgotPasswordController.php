@@ -34,14 +34,14 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    // protected function sendResetLinkResponse($response)
-    // {
-    //     return response()->json(['message' => trans($response)]);
-    // }
-    // protected function sendResetLinkFailedResponse(Request $request, $response)
-    // {
-    //     return response()->json(
-    //         ['email' => trans($response)]
-    //     );
-    // }
+    protected function sendResetLinkResponse($response)
+    {
+        return response()->json(['message' => trans($response)]);
+    }
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return response()->json(
+            ['email' => trans($response)],422
+        );
+    }
 }

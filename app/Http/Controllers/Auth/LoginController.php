@@ -50,7 +50,7 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: response()->json(['message' => 'Login Success','username' => Auth::user()]);
+                ?: response()->json(['message' => 'Login Success','username' => Auth::user()->name]);
     }
 
     public function logout(Request $request){

@@ -9,8 +9,14 @@ class CastController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
+
+    public function index()
+    {
+        return response()->json(['casts' => Cast::where('status','=',1)->get()]);
+    }
+
     public function showInsertCastForm()
     {
         return view('cast');

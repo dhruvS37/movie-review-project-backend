@@ -12,7 +12,4 @@ class Category extends Model
     public $timestamps = false;
     protected $guarded = ['id'];
     
-    public function movies(){
-        return $this->belongsToMany('App\Models\Movie','movie_category_mapping')->withPivot('status')->wherePivot('status',1);
-    }
 }

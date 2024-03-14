@@ -12,10 +12,9 @@ class FilterController extends Controller
 
     public function index(Request $request)
     {
-        $categories = Category::all();
         $filterData = $this->filterQuery();
 
-        return view('filter', ['categories' => $categories, 'data' => $filterData]);
+        return view('filter', ['data' => $filterData]);
     }
     
     public function filterData(Request $request)

@@ -21,16 +21,12 @@ class MovieController extends Controller
 
     public function index(Request $request)
     {
-        // return Auth::user();
-        $categories = Category::all();
-        $casts = Cast::all();
         $movie = Movie::movieInfo(['category', 'cast'])
             ->where('movies.status', '=', '1')
             ->distinct('categories.category', 'cast_crew.cast_name')
             ->orderBy('movies.id', 'desc')
             ->get();
-        // return view('home', ['categories' => $categories, 'casts' => $casts, 'movies' => $movie]);
-        return response()->json(['categories' => $categories, 'casts' => $casts, 'movies' => $movie]);
+        return response()->json(['movies' => $movie]);
     }
 
 
@@ -62,10 +58,8 @@ class MovieController extends Controller
             }
 
             return response()->json(['message' => 'Operation completed successfully']);
-            // return redirect('home')->with('success_massage', 'Operation completed successfully');
         } else
             return response()->json(['message' => 'An error ocuurs. Please try again!']);
-            // return redirect('home')->with('error_massage', 'An error ocuurs. Please try again!');
     }
 
 

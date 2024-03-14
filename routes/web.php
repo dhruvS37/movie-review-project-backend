@@ -22,10 +22,10 @@ Route::get('/welcome', function () {
 
 Route::resource('/home', 'MovieController',['exept'=>['home.create','home.edit']]);
 
-Route::get('/category', 'CategoryController@showInsertCategoryForm');
+Route::get('/category', 'CategoryController@index');
 Route::post('/category', 'CategoryController@insertCategory');
 
-Route::get('/cast', 'CastController@showInsertCastForm');
+Route::get('/cast', 'CastController@index');
 Route::post('/cast','CastController@insertCast');
 
 Route::get('/filters','FilterController@index');

@@ -10,24 +10,12 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
-    public function show()
+    public function index()
     {
-        $category = Movie::find(56)->categories()->wherePivot('status', 1)->pluck('category');
-        $movie = Category::find(1)->movies;
-        $cast = Movie::find(56)->casts;
-
-        // $movie = Movie::find(56);
-        // $category = Category::where('category','Romantic')->value('id');
-        // $movie->categories()->attach($category);
-
-
-        return $cast;
-        return $movie;
-        return implode(',', $category->toArray());
-        return $category;
+        return response()->json(['categories' => Category::where('status','=',1)->get()]);
     }
 
     public function showInsertCategoryForm()
